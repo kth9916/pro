@@ -23,20 +23,22 @@ public class KeycloakAdminClientServiceImpl implements KeycloakSyncService {
     }
 
     @Override
-    public void syncUser(User user, String password) {
+    public void syncUser(User user) {
         UserRepresentation userRepresentation = new UserRepresentation();
-        userRepresentation.setUsername(user.getUsername());
+        userRepresentation.setUsername(user.getUserId());
         userRepresentation.setEmail(user.getEmail());
+        userRepresentation.setLastName(user.getLastName());
+        userRepresentation.setFirstName(user.getFirstName());
         userRepresentation.setEnabled(true);
 
         Response response = keycloak.realm(realm).users().create(userRepresentation);
-        String userId = CreatedResponseUtil.getCreatedId(response);
+        String cloakUserId = CreatedResponseUtil.getCreatedId(response);
 
         CredentialRepresentation passwordCred = new CredentialRepresentation();
         passwordCred.setTemporary(false);
         passwordCred.setType(CredentialRepresentation.PASSWORD);
-        passwordCred.setValue(password);
+        passwordCred.setValue(user.getPassword());
 
-        keycloak.realm(realm).users().get(userId).resetPassword(passwordCred);
+        keycloak.realm(realm).users().get(cloakUserId).resetPassword(passwordCred);
     }
 }

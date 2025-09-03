@@ -12,6 +12,7 @@ public class UserCdo implements JsonSerializable {
     //
     private String userId;
     private String password;
-    private String username;
+    private String lastName;
+    private String firstName;
     private String email;
 }

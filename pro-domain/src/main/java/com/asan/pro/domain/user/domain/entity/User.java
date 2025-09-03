@@ -11,7 +11,8 @@ public class User extends CommonEntity {
 
     private String userId;
     private String password;
-    private String username;
+    private String lastName;
+    private String firstName;
     private String email;
 
     public User(String id) {
@@ -23,7 +24,8 @@ public class User extends CommonEntity {
         super();
         this.userId = userCdo.getUserId();
         this.password = userCdo.getPassword();
-        this.username = userCdo.getUsername();
+        this.lastName = userCdo.getLastName();
+        this.firstName = userCdo.getFirstName();
         this.email = userCdo.getEmail();
     }
 }

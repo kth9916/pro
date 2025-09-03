@@ -21,7 +21,8 @@ public class UserJpo extends CommonEntityJpo {
 
     private String userId;
     private String password;
-    private String username;
+    private String lastName;
+    private String firstName;
     private String email;
 
     public UserJpo(User user) {
