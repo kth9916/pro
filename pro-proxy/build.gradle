@@ -1,0 +1,8 @@
+dependencies {
+    implementation project(':pro-domain')
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Keycloak Admin Client
+    implementation 'org.keycloak:keycloak-admin-client:26.0.6'
+}

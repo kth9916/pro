@@ -1,0 +1,8 @@
+rootProject.name = 'pro'
+include 'pro-boot'
+include 'pro-client'
+include 'pro-domain'
+include 'pro-event'
+include 'pro-facade'
+include 'pro-feature'
+include 'pro-proxy'

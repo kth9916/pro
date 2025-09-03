@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: pro-boot
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/your-realm-name # Keycloak 서버의 issuer-uri
+
+keycloak:
+  auth-server-url: http://localhost:8080 # Keycloak 서버 URL
+  realm: your-realm-name # Keycloak Realm 이름
+  client-id: your-client-id # Admin 권한을 가진 클라이언트 ID
+  client-secret: your-client-secret # 해당 클라이언트의 Secret
+  grant-type: client_credentials
