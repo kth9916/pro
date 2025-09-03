@@ -25,3 +25,5 @@ Thumbs.db
 # application-local.properties 등 민감 정보를 담은 로컬 설정 파일
 application-*.properties
 application-*.yml
+# 환경 변수 / 설정 파일
+.env
