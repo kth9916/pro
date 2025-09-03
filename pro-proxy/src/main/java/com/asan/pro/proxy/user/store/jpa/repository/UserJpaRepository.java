@@ -1,6 +1,6 @@
-package com.asan.pro.domain.user.store.jpa.repository;
+package com.asan.pro.proxy.user.store.jpa.repository;
 
-import com.asan.pro.domain.user.store.jpa.jpo.UserJpo;
+import com.asan.pro.proxy.user.store.jpa.jpo.UserJpo;
 import org.springframework.data.jpa.repository.JpaRepository; // Added import
 
 

@@ -10,14 +10,10 @@ plugins {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation project(':pro-facade') // pro-facade 모듈 의존성 추가
+    implementation project(':pro-proxy')
 
     // Spring Security 및 OAuth2 Resource Server
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-    implementation 'org.springframework.boot:spring-boot-starter-web' // 웹 기능 추가
-
-    implementation 'org.keycloak:keycloak-admin-client:26.0.6'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

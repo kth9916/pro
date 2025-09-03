@@ -1,4 +1,4 @@
-package com.asan.pro.proxy.auth;
+package com.asan.pro.domain.auth.domain.service;
 
 import com.asan.pro.domain.user.domain.entity.User;
 

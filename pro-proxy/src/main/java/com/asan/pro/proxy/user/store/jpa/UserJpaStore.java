@@ -1,10 +1,9 @@
-package com.asan.pro.domain.user.store.jpa;
+package com.asan.pro.proxy.user.store.jpa;
 
 import com.asan.pro.domain.user.domain.entity.User;
 import com.asan.pro.domain.user.store.UserStore;
-import com.asan.pro.domain.user.store.jpa.jpo.UserJpo;
-import com.asan.pro.domain.user.store.jpa.repository.UserJpaRepository;
-import jakarta.persistence.EntityManager;
+import com.asan.pro.proxy.user.store.jpa.jpo.UserJpo;
+import com.asan.pro.proxy.user.store.jpa.repository.UserJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

@@ -1,4 +1,3 @@
 dependencies {
     api project(':pro-domain')
-    implementation project(':pro-proxy')
 }

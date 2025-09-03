@@ -1,14 +1,8 @@
 package com.asan.pro.domain.user.domain.entity;
 
 import com.asan.pro.domain.shared.CommonEntity;
-import com.asan.pro.domain.shared.CommonEntityJpo;
 import com.asan.pro.domain.user.domain.entity.sdo.UserCdo;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import lombok.*;
-
-import java.io.IOException;
 
 @Getter
 @Setter

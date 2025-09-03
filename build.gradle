@@ -50,6 +50,9 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.kafka:spring-kafka'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'io.github.cdimascio:java-dotenv:+'
+
         runtimeOnly 'org.postgresql:postgresql'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.springframework.kafka:spring-kafka-test'

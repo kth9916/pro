@@ -1,5 +1,6 @@
-package com.asan.pro.domain.shared;
+package com.asan.pro.proxy.shared;
 
+import com.asan.pro.domain.shared.CommonEntity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;

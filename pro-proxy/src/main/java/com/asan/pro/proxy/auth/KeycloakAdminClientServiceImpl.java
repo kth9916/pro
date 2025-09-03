@@ -1,5 +1,6 @@
 package com.asan.pro.proxy.auth;
 
+import com.asan.pro.domain.auth.domain.service.KeycloakSyncService;
 import com.asan.pro.domain.user.domain.entity.User;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.CredentialRepresentation;

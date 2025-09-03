@@ -1,15 +1,48 @@
+keycloak:
+  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL}
+  realm: ${KEYCLOAK_REALM}
+  client-id: ${KEYCLOAK_CLIENT_ID}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
+
 spring:
   application:
-    name: pro-boot
+    name: pro
+
+  # ===================================================================
+  # = DATASOURCE CONFIGURATION
+  # ===================================================================
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://10.0.2.161:5432/pro
+    username: pro
+    password: pro123!
+  jpa:
+    hibernate:
+      ddl-auto: update # 개발 환경에서는 update, 운영 환경에서는 validate 또는 none 사용을 권장합니다.
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # ===================================================================
+  # = SECURITY & OAUTH2 (KEYCLOAK) CONFIGURATION
+  # ===================================================================
   security:
     oauth2:
+      # API 서버(Resource Server) 설정: 외부에서 들어오는 JWT 토큰을 검증합니다.
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/your-realm-name # Keycloak 서버의 issuer-uri
+          issuer-uri: ${KEYCLOAK_AUTH_SERVER_URL}/realms/${KEYCLOAK_REALM}
 
-keycloak:
-  auth-server-url: http://localhost:8080 # Keycloak 서버 URL
-  realm: your-realm-name # Keycloak Realm 이름
-  client-id: your-client-id # Admin 권한을 가진 클라이언트 ID
-  client-secret: your-client-secret # 해당 클라이언트의 Secret
-  grant-type: client_credentials
+      # 다른 서버에 API를 요청해야 할 때(Client)를 위한 설정입니다.
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_AUTH_SERVER_URL}/realms/${KEYCLOAK_REALM}
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            authorization-grant-type: client_credentials # 서버 간 통신 시 사용
+            scope: openid

@@ -1,20 +1,20 @@
-package com.asan.pro.feature.user;
+package com.asan.pro.feature.user.flow;
 
+import com.asan.pro.domain.auth.domain.service.KeycloakSyncService;
 import com.asan.pro.domain.user.domain.entity.User;
 import com.asan.pro.domain.user.domain.entity.sdo.UserCdo;
 import com.asan.pro.domain.user.domain.logic.UserLogic;
-import com.asan.pro.proxy.auth.KeycloakSyncService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
-public class UserService {
+public class UserFlow {
     private final UserLogic userLogic;
     private final KeycloakSyncService keycloakSyncService;
 
-    @Transactional
     public User registerUser(UserCdo userCdo) {
         //
         String id = userLogic.registerUser(userCdo);

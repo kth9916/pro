@@ -1,11 +1,8 @@
-package com.asan.pro.domain.user.store.jpa.jpo;
+package com.asan.pro.proxy.user.store.jpa.jpo;
 
-import com.asan.pro.domain.shared.CommonEntityJpo;
+import com.asan.pro.proxy.shared.CommonEntityJpo;
 import com.asan.pro.domain.user.domain.entity.User;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
