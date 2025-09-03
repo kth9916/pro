@@ -12,10 +12,10 @@ spring:
   # = DATASOURCE CONFIGURATION
   # ===================================================================
   datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://10.0.2.161:5432/pro
-    username: pro
-    password: pro123!
   jpa:
     hibernate:
       ddl-auto: update # 개발 환경에서는 update, 운영 환경에서는 validate 또는 none 사용을 권장합니다.
