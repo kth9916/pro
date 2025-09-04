@@ -162,7 +162,7 @@ public class UserService {
         } catch (Exception e) {
             // 동기화 실패 시 롤백 처리 또는 예외 처리
             // @Transactional에 의해 DB 저장도 롤백됨
-            throw new RuntimeException("Keycloak user creation failed", e);
+            throw new RuntimeException("Keycloak citizen creation failed", e);
         }
         
         return newUser;
@@ -188,10 +188,10 @@ sequenceDiagram
 
     %% 1. Role & User Registration %%
     rect rgba(0, 255, 0, 0.1)
-        Admin->>SpringApp: Create user/role request (API call)
-        SpringApp->>AppDB: Save user/role info (JPA)
+        Admin->>SpringApp: Create citizen/role request (API call)
+        SpringApp->>AppDB: Save citizen/role info (JPA)
         AppDB-->>SpringApp: Save success
-        SpringApp->>Keycloak: (Admin Client) Create user/role request
+        SpringApp->>Keycloak: (Admin Client) Create citizen/role request
         Keycloak-->>SpringApp: Create success
         SpringApp-->>Admin: Final creation response
     end
@@ -202,7 +202,7 @@ sequenceDiagram
         Client->>Keycloak: Auth request (Redirect)
         Keycloak-->>User: Login page
         User->>Keycloak: Enter ID/Password
-        Keycloak->>Keycloak: Verify user info
+        Keycloak->>Keycloak: Verify citizen info
         Keycloak-->>Client: Auth success + JWT (Access Token)
         Client-->>User: Login complete
     end
@@ -214,7 +214,7 @@ sequenceDiagram
         SpringApp->>SpringApp: (Spring Security) Validate JWT
         Note right of SpringApp: 1. Verify signature (Keycloak public key)<br/>2. Check expiration<br/>3. Verify issuer
         SpringApp->>SpringApp: (Spring Security) Extract role info
-        SpringApp->>SpringApp: Compare API required role with user role
+        SpringApp->>SpringApp: Compare API required role with citizen role
         alt Sufficient role
             SpringApp->>AppDB: Query data
             AppDB-->>SpringApp: Return data

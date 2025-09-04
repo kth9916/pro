@@ -1,4 +1,4 @@
-package com.asan.pro.domain.user.domain.entity.sdo;
+package com.asan.pro.domain.citizen.domain.entity.sdo;
 
 import com.asan.pro.domain.shared.JsonSerializable;
 import lombok.*;
@@ -8,10 +8,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCdo implements JsonSerializable {
+public class CitizenCdo implements JsonSerializable {
     //
-    private String userId;
-    private String password;
+    private String loginId;
     private String lastName;
     private String firstName;
     private String email;

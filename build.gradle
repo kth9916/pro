@@ -51,6 +51,7 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.kafka:spring-kafka'
         implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
         implementation 'io.github.cdimascio:java-dotenv:+'
 
         runtimeOnly 'org.postgresql:postgresql'

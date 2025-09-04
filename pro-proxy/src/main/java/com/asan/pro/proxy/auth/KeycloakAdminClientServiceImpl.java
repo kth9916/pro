@@ -1,7 +1,7 @@
 package com.asan.pro.proxy.auth;
 
 import com.asan.pro.domain.auth.domain.service.KeycloakSyncService;
-import com.asan.pro.domain.user.domain.entity.User;
+import com.asan.pro.domain.citizen.domain.entity.Citizen;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -23,12 +23,12 @@ public class KeycloakAdminClientServiceImpl implements KeycloakSyncService {
     }
 
     @Override
-    public void syncUser(User user) {
+    public void syncUser(Citizen citizen, String password) {
         UserRepresentation userRepresentation = new UserRepresentation();
-        userRepresentation.setUsername(user.getUserId());
-        userRepresentation.setEmail(user.getEmail());
-        userRepresentation.setLastName(user.getLastName());
-        userRepresentation.setFirstName(user.getFirstName());
+        userRepresentation.setUsername(citizen.getLoginId());
+        userRepresentation.setEmail(citizen.getEmail());
+        userRepresentation.setLastName(citizen.getLastName());
+        userRepresentation.setFirstName(citizen.getFirstName());
         userRepresentation.setEnabled(true);
 
         Response response = keycloak.realm(realm).users().create(userRepresentation);
@@ -37,7 +37,7 @@ public class KeycloakAdminClientServiceImpl implements KeycloakSyncService {
         CredentialRepresentation passwordCred = new CredentialRepresentation();
         passwordCred.setTemporary(false);
         passwordCred.setType(CredentialRepresentation.PASSWORD);
-        passwordCred.setValue(user.getPassword());
+        passwordCred.setValue(password);
 
         keycloak.realm(realm).users().get(cloakUserId).resetPassword(passwordCred);
     }
