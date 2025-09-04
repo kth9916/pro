@@ -72,17 +72,17 @@ graph LR
 ### 가. `pro-domain`
 - **역할:** 프로젝트의 가장 핵심이 되는 비즈니스 규칙과 모델, 그리고 '계약'(인터페이스)을 정의합니다.
 - **특징:** 순수한 Java 객체(POJO)로만 구성되며, 특정 기술(@Entity, @Service 등)에 대한 어노테이션이나 의존성이 전혀 없습니다.
-- **예시:** `User` (도메인 모델), `UserStore` (인터페이스), `KeycloakSyncService` (인터페이스)
+- **예시:** `Citizen` (도메인 모델), `CitizenStore` (인터페이스), `KeycloakSyncService` (인터페이스)
 
 ### 나. `pro-feature`
 - **역할:** 순수한 비즈니스 로직과 서비스들을 포함합니다.
 - **특징:** `pro-domain`에 정의된 인터페이스를 주입받아 비즈니스 흐름을 제어합니다. `pro-proxy` 등 구체적인 구현 기술에 대해서는 전혀 알지 못합니다.
-- **예시:** `UserService`
+- **예시:** `CitizenFlow`
 
 ### 다. `pro-proxy`
 - **역할:** `pro-domain`의 인터페이스에 대한 실제 구현체를 제공합니다.
 - **특징:** 데이터베이스 연동(JPA), 외부 API 클라이언트(Keycloak) 등 기술 종속적인 코드가 모두 이 모듈에 위치합니다. `@Repository`, `@Service`, `@Entity` 등의 어노테이션이 사용됩니다.
-- **예시:** `UserJpaStore`, `KeycloakAdminClientServiceImpl`
+- **예시:** `CitizenJpaStore`, `KeycloakAdminClientServiceImpl`
 
 ### 라. `pro-facade`
 - **역할:** 외부 세계(주로 Web)와의 접점 역할을 합니다.
@@ -96,8 +96,8 @@ graph LR
 
 이 아키텍처가 실제로 어떻게 동작하는지 `KeycloakSyncService`의 흐름을 통해 알 수 있습니다.
 
-1.  **계약:** `pro-domain` 모듈의 `KeycloakSyncService` 인터페이스가 `syncUser`라는 '계약'을 정의합니다.
-2.  **사용:** `pro-feature` 모듈의 특정 서비스는 생성자를 통해 `KeycloakSyncService` 인터페이스를 주입받아 `syncUser` 메서드를 호출합니다. 이 서비스는 실제 구현에 대해서는 아는 바가 없습니다.
+1.  **계약:** `pro-domain` 모듈의 `KeycloakSyncService` 인터페이스가 `syncUser(Citizen citizen, String password)`라는 '계약'을 정의합니다.
+2.  **사용:** `pro-feature` 모듈의 `CitizenFlow` 서비스는 생성자를 통해 `KeycloakSyncService` 인터페이스를 주입받아 `syncUser` 메서드를 호출합니다. 이 서비스는 실제 구현에 대해서는 아는 바가 없습니다.
 3.  **구현:** `pro-proxy` 모듈의 `KeycloakAdminClientServiceImpl` 클래스가 `KeycloakSyncService` 인터페이스를 구현하고, 실제 Keycloak API 통신 로직을 작성합니다. 이 클래스는 `@Service`로 등록됩니다.
 4.  **조립:** `pro-boot`이 애플리케이션을 실행하면, 스프링 컨테이너는 `pro-feature`의 서비스가 `KeycloakSyncService`를 필요로 하는 것을 인지하고, `@Service`가 붙은 `KeycloakAdminClientServiceImpl` 구현체를 찾아 자동으로 주입해줍니다.
 
